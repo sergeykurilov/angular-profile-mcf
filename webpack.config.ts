@@ -1,5 +1,6 @@
-import { container } from 'webpack';
 const deps = require('./package.json').dependencies;
+const ModuleFederationPlugin = require('webpack/lib/container/ModuleFederationPlugin');
+
 
 module.exports = {
   output: {
@@ -18,21 +19,18 @@ module.exports = {
     hot: true,
   },
   plugins: [
-    new container.ModuleFederationPlugin({
+    new ModuleFederationPlugin({
       name: 'profile',
+      library: { type: 'var', name: 'profile' },
       filename: 'remoteEntry.js',
-      remotes: {
-        list_user: `list_user@http://localhost:3002/remoteEntry.js`,
+      exposes: {
+        ProfileModule: './src/app/profile/profile.module.ts',
       },
       shared: {
-        react: {
-          singleton: true,
-          requiredVersion: deps.react,
-        },
-        'react-dom/client': {
-          singleton: true,
-          requiredVersion: deps['react-dom'],
-        },
+        '@angular/core': { singleton: true, eager: true },
+        '@angular/common': { singleton: true, eager: true },
+        '@angular/router': { singleton: true, eager: true },
+        '@ngxs/store': { singleton: true, eager: true },
       },
     }),
   ],
