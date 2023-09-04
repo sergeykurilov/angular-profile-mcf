@@ -1,10 +1,14 @@
 const deps = require('./package.json').dependencies;
 const ModuleFederationPlugin = require('webpack/lib/container/ModuleFederationPlugin');
 
+const publicPath =
+  process.env?.["NODE_ENV"] === 'production'
+    ? "https://apps-3-6c0f827d185c.herokuapp.com/"
+    : "http://localhost:4201/"
 
 module.exports = {
   output: {
-    publicPath: 'http://localhost:4201/',
+    publicPath:  publicPath,
     uniqueName: 'mdmfprofile',
     scriptType: 'text/javascript',
   },
