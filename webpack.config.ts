@@ -1,3 +1,4 @@
+
 const deps = require('./package.json').dependencies;
 const ModuleFederationPlugin = require('webpack/lib/container/ModuleFederationPlugin');
 
@@ -28,7 +29,7 @@ module.exports = {
       library: { type: 'var', name: 'profile' },
       filename: 'remoteEntry.js',
       exposes: {
-        ProfileModule: './src/app/profile/profile.module.ts',
+        ProfileModule: './src/app/profile/profile.module',
       },
       shared: {
         '@angular/core': { singleton: true, eager: true },
