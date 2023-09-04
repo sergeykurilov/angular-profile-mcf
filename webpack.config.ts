@@ -32,7 +32,10 @@ module.exports = {
         ProfileModule: './src/app/profile/profile.module',
       },
       shared: {
-        shared: require("./package.json").dependencies,
+        '@angular/core': { singleton: true, eager: true },
+        '@angular/common': { singleton: true, eager: true },
+        '@angular/router': { singleton: true, eager: true },
+        '@ngxs/store': { singleton: true, eager: true },
       },
     }),
   ],
