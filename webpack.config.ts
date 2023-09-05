@@ -6,16 +6,6 @@ const publicPath =
   process.env?.["NODE_ENV"] === 'production'
     ? "https://apps-3-6c0f827d185c.herokuapp.com/"
     : "http://localhost:4201/"
-const mf = require('@angular-architects/module-federation/webpack');
-const share = mf.share;
-
-const path = require('path');
-
-
-const sharedMappings = new mf.SharedMappings();
-sharedMappings.register(
-  path.join(__dirname, './tsconfig.json'),
-  [/* mapped paths to share */]);
 
 module.exports = {
   output: {
@@ -39,14 +29,14 @@ module.exports = {
       library: { type: 'var', name: 'profile' },
       filename: 'remoteEntry.js',
       exposes: {
-        profile: './src/app/profile/profile.module.ts',
+        './profile.module': './src/app/profile/profile.module.ts',
       },
-      shared: share({
-        "@angular/core": { singleton: true },
-        "@angular/common": { singleton: true },
-        "@angular/router": { singleton: true },
-        ...sharedMappings.getDescriptors()
-      })
+      shared: {
+        '@angular/core': { singleton: true, eager: true },
+        '@angular/common': { singleton: true, eager: true },
+        '@angular/router': { singleton: true, eager: true },
+        '@ngxs/store': { singleton: true, eager: true },
+      },
     }),
   ],
 };
