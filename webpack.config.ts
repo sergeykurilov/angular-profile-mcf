@@ -39,7 +39,7 @@ module.exports = {
       library: { type: 'var', name: 'profile' },
       filename: 'remoteEntry.js',
       exposes: {
-        profile: './src/app/profile/profile.module',
+        profile: './src/app/profile/profile.module.ts',
       },
       shared: share({
         "@angular/core": { singleton: true },
