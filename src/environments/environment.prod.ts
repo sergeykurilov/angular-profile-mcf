@@ -1,6 +1,5 @@
-import * as process from "process";
 
 export const environment = {
   production: true,
-  url: process.env?.['PROD_PROFILE']
+  url: "http://apps-3-6c0f827d185c.herokuapp.com"
 };

@@ -10,7 +10,7 @@ import { environment } from '../environments/environment';
 export class AppComponent{
   title = 'left-sidebar';
 
-  prodUrl = environment.url ?? "";
+  prodUrl = environment.url;
 
 
 
