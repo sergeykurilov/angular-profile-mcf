@@ -14,4 +14,4 @@ const mount = ()=>{
     .catch(err => console.error(err));
 }
 
-export{mount}
+export{ mount }
